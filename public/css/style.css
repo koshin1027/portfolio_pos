@@ -1,0 +1,129 @@
+/* 全体ベース */
+body {
+    background-color: #f9f6f1; /* 明るいベージュ寄りの白 */
+    color: #2e2e2e; /* ダークグレー（黒寄り） */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 1rem;
+}
+
+/* コンテナ */
+.order-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(60, 42, 33, 0.1); /* 茶系の影 */
+}
+
+/* 見出し */
+.order-container h2 {
+    color: #5d4037; /* 落ち着いた茶色 */
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+/* 商品リスト */
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ← 3列固定 */
+    gap: 1rem;
+    padding-left: 0; /* 念のため左余白リセット */
+    list-style: none; /* ← 黒丸削除 */
+}
+
+/* 商品カード */
+.menu-item {
+    border: 2px solid #a1887f; /* 薄茶 */
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #fdfdfb;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.menu-item:hover {
+    background-color: #d7ccc8; /* 明るい茶色 */
+    border-color: #6d4c41;
+}
+
+.menu-item.selected {
+    background-color: #6d4c41; /* 濃い茶色 */
+    color: white;
+    border-color: #4e342e;
+}
+
+/* 商品名 */
+.menu-item .name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* カート全体 */
+.cart {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    color: #3e2723; /* ダークブラウン */
+    background-color: #fffaf5;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+/* カートの見出し */
+.cart h2,
+.cart h3 {
+    color: #5d4037; /* コーヒー色 */
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* カートのアイテムリスト */
+.cart-items {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+    color: #3e2723;
+}
+
+.cart-items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #d7ccc8; /* 薄い茶系 */
+}
+
+/* 合計金額表示 */
+.cart-total {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #4e342e; /* 深めの茶色 */
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+/* 注文ボタン */
+.order-btn {
+    background-color: #8d6e63;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.order-btn:hover:not(:disabled) {
+    background-color: #6d4c41;
+}
+
+.order-btn:disabled {
+    background-color: #d7ccc8;
+    cursor: not-allowed;
+}
