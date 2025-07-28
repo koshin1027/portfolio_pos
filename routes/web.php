@@ -11,7 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\CashierController;
 
-//スタートアップ
+//スタート
 Route::get('/', [StartUpController::class, 'index'])->name('startup');
 
 //ログイン
