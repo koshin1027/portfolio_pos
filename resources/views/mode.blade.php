@@ -55,20 +55,17 @@
 
         <!-- メニュー選択部分 -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div wire:loading>
-                ローディング中...
-            </div>
 
             <!-- 管理 -->
             <a href="{{ route('management') }}">
-            <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
-                <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
-                    <path d="M12 4V20M4 12H20" />
-                    <circle cx="12" cy="12" r="9" />
-                </svg>
-                <h2 class="text-2xl font-bold mb-2">管理</h2>
-                <p class="text-gray-400 text-center">システム設定・売上管理</p>
-            </div>
+                    <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
+                        <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
+                            <path d="M12 4V20M4 12H20" />
+                            <circle cx="12" cy="12" r="9" />
+                        </svg>
+                        <h2 class="text-2xl font-bold mb-2">管理</h2>
+                        <p class="text-gray-400 text-center">システム設定・売上管理</p>
+                    </div>
             </a>
 
             <!-- 注文 -->
