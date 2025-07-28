@@ -13,6 +13,6 @@ class StartUp extends Component
 
     public function render()
     {
-        return view('livewire.startup');
+        return view('livewire.start-up');
     }
 }
