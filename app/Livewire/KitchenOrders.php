@@ -27,18 +27,7 @@ class KitchenOrders extends Component
     
     public function render()
     {
-        return view('livewire.kitchen-orders', [
-            'clock' => $this->clock,
-            'status' => $this->status,
-            'orders' => $this->orders,
-            'categories' => $this->categories,
-            'menus' => $this->menus,
-            'countAll' => $this->countAll,
-            'countNew' => $this->countNew,
-            'countPreparing' => $this->countPreparing,
-            'countReady' => $this->countReady,
-            'countDelivered' => $this->countDelivered,
-        ]);
+        return view('livewire.kitchen-orders');
     }
 
     public function backToStart()
