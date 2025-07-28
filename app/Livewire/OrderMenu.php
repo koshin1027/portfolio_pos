@@ -8,10 +8,18 @@ use App\Models\Menu;
 
 class OrderMenu extends Component
 {
-    // public function updateCart()
-    // {
-
-    // }
+    public function mount()
+    {
+        $this->categories = Category::all();
+        $this->menus = Menu::with('category')->get();
+        $this->filterMenus();
+        $this->updateClock();
+    }
+    
+    public function render()
+    {
+        return view('livewire.order-menu');
+    }
 
     public function openOrderHistory()
     {
@@ -41,14 +49,6 @@ class OrderMenu extends Component
     public $orderNumber = null;
     public $clock;
     public $search = '';
-
-    public function mount()
-    {
-        $this->categories = Category::all();
-        $this->menus = Menu::with('category')->get();
-        $this->filterMenus();
-        $this->updateClock();
-    }
 
     public function setActiveCategory($id)
     {
@@ -102,22 +102,7 @@ class OrderMenu extends Component
         $this->menus = $query->get();
     }
 
-    public function render()
-    {
-        // return view('livewire.order-menu', [
-        //     'categories' => $this->categories,
-        //     'menus' => $this->menus,
-        //     'cart' => $this->cart,
-        //     'showConfirmModal' => $this->showConfirmModal,
-        //     'showCompleteModal' => $this->showCompleteModal,
-        //     'orderNumber' => $this->orderNumber,
-        //     'clock' => $this->clock,
-        //     'showOrderHistory' => $this->showOrderHistory,
-        //     'orderHistory' => $this->orderHistory,
-        // ]);
 
-        return view('livewire.order-menu');
-    }
 
     public function updateClock()
     {
