@@ -9,12 +9,7 @@ use App\Models\Category;
 use App\Models\Menu;
 
 class KitchenOrders extends Component
-{
-    public function backToStart()
-    {
-        return redirect()->route('mode');
-    }
-    
+{    
     protected $listeners = ['backToStart' => 'backToStart'];
     public $categories;
     public $menus;
@@ -28,6 +23,27 @@ class KitchenOrders extends Component
         $this->categories = Category::all();
         $this->menus = Menu::with('category')->get();
         $this->fetchOrders();
+    }
+    
+    public function render()
+    {
+        return view('livewire.kitchen-orders', [
+            'clock' => $this->clock,
+            'status' => $this->status,
+            'orders' => $this->orders,
+            'categories' => $this->categories,
+            'menus' => $this->menus,
+            'countAll' => $this->countAll,
+            'countNew' => $this->countNew,
+            'countPreparing' => $this->countPreparing,
+            'countReady' => $this->countReady,
+            'countDelivered' => $this->countDelivered,
+        ]);
+    }
+
+    public function backToStart()
+    {
+        return redirect()->route('mode');
     }
 
     public function updateClock()
@@ -76,19 +92,4 @@ class KitchenOrders extends Component
         $this->fetchOrders();
     }
 
-    public function render()
-    {
-        return view('livewire.kitchen-orders', [
-            'clock' => $this->clock,
-            'status' => $this->status,
-            'orders' => $this->orders,
-            'categories' => $this->categories,
-            'menus' => $this->menus,
-            'countAll' => $this->countAll,
-            'countNew' => $this->countNew,
-            'countPreparing' => $this->countPreparing,
-            'countReady' => $this->countReady,
-            'countDelivered' => $this->countDelivered,
-        ]);
-    }
 }

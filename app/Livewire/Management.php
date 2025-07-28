@@ -41,6 +41,37 @@ class Management extends Component
         $this->activeCategoryId = $this->categories->first() ? $this->categories->first()->id : null;
     }
 
+    public function render()
+    {
+        $query = Menu::with('category');
+
+        if (!empty($this->activeCategoryId)) {
+            $query->where('category_id', $this->activeCategoryId);
+        }
+
+        if (!empty($this->search)) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        if (!empty($this->filterStatus) && $this->filterStatus !== 'すべての状態') {
+            $query->where('status', $this->filterStatus);
+        }
+
+        if ($this->sortPrice === '低い順') {
+            $query->orderBy('price', 'asc');
+        } elseif ($this->sortPrice === '高い順') {
+            $query->orderBy('price', 'desc');
+        }
+
+        $menus = $query->paginate(5);
+
+        return view('livewire.management', [
+            'categories' => $this->categories,
+            'menus' => $menus,
+            'activeCategoryId' => $this->activeCategoryId,
+        ]);
+    }
+
     public function searchMenus()
     {
         $this->resetPage();
@@ -84,9 +115,7 @@ class Management extends Component
             'images' => $this->images,
         ]);
 
-        // メニューリスト再取得
-
-        // フォームリセット＆モーダル閉じる
+        //フォームリセット＆モーダル閉じる
         $this->resetForm();
         $this->isAddModalOpen = false;
     }
@@ -191,37 +220,6 @@ class Management extends Component
     public function updatedActiveCategoryId()
     {
         $this->resetPage();
-    }
-
-    public function render()
-    {
-        $query = Menu::with('category');
-
-        if (!empty($this->activeCategoryId)) {
-            $query->where('category_id', $this->activeCategoryId);
-        }
-
-        if (!empty($this->search)) {
-            $query->where('name', 'like', '%' . $this->search . '%');
-        }
-
-        if (!empty($this->filterStatus) && $this->filterStatus !== 'すべての状態') {
-            $query->where('status', $this->filterStatus);
-        }
-
-        if ($this->sortPrice === '低い順') {
-            $query->orderBy('price', 'asc');
-        } elseif ($this->sortPrice === '高い順') {
-            $query->orderBy('price', 'desc');
-        }
-
-        $menus = $query->paginate(5);
-
-        return view('livewire.management', [
-            'categories' => $this->categories,
-            'menus' => $menus,
-            'activeCategoryId' => $this->activeCategoryId,
-        ]);
     }
 
     // ページネーション: 指定ページへ移動

@@ -8,6 +8,20 @@ use App\Models\Menu;
 
 class OrderMenu extends Component
 {
+    public $showOrderHistory = false;
+    public $orderHistory;
+    protected $listeners = ['closeOrderHistory' => 'closeOrderHistory'];
+    public $searchOrderNumber = '';
+    public $activeCategoryId = null;
+    public $categories;
+    public $menus;
+    public $cart = [];
+    public $showConfirmModal = false;
+    public $showCompleteModal = false;
+    public $orderNumber = null;
+    public $clock;
+    public $search = '';
+
     public function mount()
     {
         $this->categories = Category::all();
@@ -35,20 +49,6 @@ class OrderMenu extends Component
     {
         $this->showOrderHistory = false;
     }
-    
-    public $showOrderHistory = false;
-    public $orderHistory;
-    protected $listeners = ['closeOrderHistory' => 'closeOrderHistory'];
-    public $searchOrderNumber = '';
-    public $activeCategoryId = null;
-    public $categories;
-    public $menus;
-    public $cart = [];
-    public $showConfirmModal = false;
-    public $showCompleteModal = false;
-    public $orderNumber = null;
-    public $clock;
-    public $search = '';
 
     public function setActiveCategory($id)
     {
@@ -101,8 +101,6 @@ class OrderMenu extends Component
         }
         $this->menus = $query->get();
     }
-
-
 
     public function updateClock()
     {
@@ -201,4 +199,4 @@ class OrderMenu extends Component
         // 必要ならここでリダイレクト
         // return redirect()->route('order.menu');
     }
-    }
+}
