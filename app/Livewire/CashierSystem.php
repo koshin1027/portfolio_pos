@@ -10,17 +10,6 @@ use App\Models\Menu;
 class CashierSystem extends Component
 
 {
- 
-    public function backToStart()
-    {
-        return redirect()->route('mode');
-    }
-
-    public function searchOrder()
-    {
-        $this->updatedCurrentOrderNumber($this->currentOrderNumber);
-    }
-
     public $categories;
     public $menus;
     public $allMenus;
@@ -44,6 +33,56 @@ class CashierSystem extends Component
     public $completeTotalAmount = '';
     public $completeChangeAmount = '';
     public $completeOrderItems = [];
+
+    public function mount()
+    {
+        // キッチン画面と同じく、未完了の注文idを取得
+        $this->orderNumberCandidates = \App\Models\Order::whereIn('status', ['new', 'preparing', 'ready'])
+            ->orderBy('created_at', 'desc')
+            ->pluck('id')
+            ->toArray();
+
+        $this->categories = Category::all();
+        $this->allMenus = Menu::with('category')->get();
+        $this->selectedCategory = $this->categories->first() ? $this->categories->first()->name : null;
+        $this->menus = $this->allMenus->where('category.name', $this->selectedCategory)->values();
+        $this->updateClock();
+    }
+
+    public function render()
+    {
+        return view('livewire.cashier-system', [
+            'categories' => $this->categories,
+            'menus' => $this->menus,
+            'cart' => $this->cart,
+            'subtotal' => $this->subtotal,
+            'tax' => $this->tax,
+            'total' => $this->total,
+            'selectedTable' => $this->selectedTable,
+            'selectedPaymentMethod' => $this->selectedPaymentMethod,
+            'clock' => $this->clock,
+            'showTableModal' => $this->showTableModal,
+            'showCheckoutModal' => $this->showCheckoutModal,
+            'showPaymentCompleteModal' => $this->showPaymentCompleteModal,
+            'selectedCategory' => $this->selectedCategory,
+            // 会計完了モーダル用
+            'completeOrderNumber' => $this->completeOrderNumber,
+            'completeTotalAmount' => $this->completeTotalAmount,
+            'completeChangeAmount' => $this->completeChangeAmount,
+            'completeOrderItems' => $this->completeOrderItems,
+            'orderNumberCandidates' => $this->orderNumberCandidates,
+        ]);
+    }
+
+    public function backToStart()
+    {
+        return redirect()->route('mode');
+    }
+
+    public function searchOrder()
+    {
+        $this->updatedCurrentOrderNumber($this->currentOrderNumber);
+    }
 
     // 注文番号が変更されたら自動で検索
     public function updatedCurrentOrderNumber($value)
@@ -75,22 +114,6 @@ class CashierSystem extends Component
             $this->selectedTable = null;
         }
     }
-
-    public function mount()
-    {
-        // キッチン画面と同じく、未完了の注文idを取得
-        $this->orderNumberCandidates = \App\Models\Order::whereIn('status', ['new', 'preparing', 'ready'])
-            ->orderBy('created_at', 'desc')
-            ->pluck('id')
-            ->toArray();
-
-        $this->categories = Category::all();
-        $this->allMenus = Menu::with('category')->get();
-        $this->selectedCategory = $this->categories->first() ? $this->categories->first()->name : null;
-        $this->menus = $this->allMenus->where('category.name', $this->selectedCategory)->values();
-        $this->updateClock();
-    }
-
 
     public function updateClock()
     {
@@ -236,28 +259,4 @@ class CashierSystem extends Component
         $this->menus = $this->allMenus->where('category.name', $category)->values();
     }
 
-    public function render()
-    {
-        return view('livewire.cashier-system', [
-            'categories' => $this->categories,
-            'menus' => $this->menus,
-            'cart' => $this->cart,
-            'subtotal' => $this->subtotal,
-            'tax' => $this->tax,
-            'total' => $this->total,
-            'selectedTable' => $this->selectedTable,
-            'selectedPaymentMethod' => $this->selectedPaymentMethod,
-            'clock' => $this->clock,
-            'showTableModal' => $this->showTableModal,
-            'showCheckoutModal' => $this->showCheckoutModal,
-            'showPaymentCompleteModal' => $this->showPaymentCompleteModal,
-            'selectedCategory' => $this->selectedCategory,
-            // 会計完了モーダル用
-            'completeOrderNumber' => $this->completeOrderNumber,
-            'completeTotalAmount' => $this->completeTotalAmount,
-            'completeChangeAmount' => $this->completeChangeAmount,
-            'completeOrderItems' => $this->completeOrderItems,
-            'orderNumberCandidates' => $this->orderNumberCandidates,
-        ]);
-    }
 }
