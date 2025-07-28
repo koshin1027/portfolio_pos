@@ -6,7 +6,7 @@
 @endsection
 
 @section('body-content')
-    @livewire('startup')
+    @livewire('start-up')
 @endsection
 
 @section('js')
