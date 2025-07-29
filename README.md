@@ -23,8 +23,7 @@
 
 ## 📷 デモ・スクリーンショット
 
-（実際の画面キャプチャやGIFを載せると効果的）  
-![screenshot](path/to/screenshot.png)
+
 
 🔗 URL
 
