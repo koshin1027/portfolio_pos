@@ -12,7 +12,7 @@ use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\CashierController;
 
 //スタート
-Route::get('/start', [StartUpController::class, 'index'])->name('startup');
+Route::get('/', [StartUpController::class, 'index'])->name('startup');
 
 //ログイン
 Route::get('/login', [LoginController::class, 'index'])->name('login');
