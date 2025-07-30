@@ -19,6 +19,11 @@
 このアプリはPOSレジシステムを目的として作成したWebアプリケーションです。  
 （例：飲食店向けのPOSシステム）
 
+🔗 URL
+
+- 本番環境: https://portfolio-pos-master-l9ctee.laravel.cloud/start
+- 管理画面ログイン情報: 未入力でログインいただけます
+
 🛠 使用技術
 
 - フロントエンド: HTML / CSS / JavaScript /Tailwind CSS
@@ -32,11 +37,6 @@
 - 注文管理（リアルタイム更新）
 - キッチン画面（注文状態表示）
 - 会計処理（売上集計）
-
-🔗 URL
-
-- 本番環境: https://portfolio-pos-master-l9ctee.laravel.cloud/start
-- 管理画面ログイン情報: 未入力でログインいただけます
 
 📁 ディレクトリ構成
 
