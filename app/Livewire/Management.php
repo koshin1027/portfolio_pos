@@ -65,11 +65,7 @@ class Management extends Component
 
         $menus = $query->paginate(5);
 
-        return view('livewire.management', [
-            'categories' => $this->categories,
-            'menus' => $menus,
-            'activeCategoryId' => $this->activeCategoryId,
-        ]);
+        return view('livewire.management');
     }
 
     public function searchMenus()
@@ -98,7 +94,6 @@ class Management extends Component
     // メニュー追加処理
     public function submit()
     {
-        // バリデーション
         $this->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
