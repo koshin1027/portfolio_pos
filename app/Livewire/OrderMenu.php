@@ -35,6 +35,7 @@ class OrderMenu extends Component
         return view('livewire.order-menu');
     }
 
+    //注文履歴モーダル制御
     public function openOrderHistory()
     {
         // 最新の注文履歴を毎回取得（ステータスのリアルタイム反映）
@@ -66,12 +67,15 @@ class OrderMenu extends Component
     {
         if (empty($this->searchOrderNumber)) return;
         $order = \App\Models\Order::where('number', $this->searchOrderNumber)->first();
+
         if (!$order) {
             session()->flash('error', '該当する注文が見つかりません');
             return;
         }
+
         $items = \App\Models\OrderItem::where('order_id', $order->id)->get();
         $cart = [];
+
         foreach ($items as $item) {
             $menu = \App\Models\Menu::find($item->menu_id);
             if ($menu) {
@@ -83,6 +87,7 @@ class OrderMenu extends Component
                 ];
             }
         }
+
         $this->cart = $cart;
         // $this->updateCart();
     }
@@ -196,7 +201,6 @@ class OrderMenu extends Component
     {
         $this->showCompleteModal = false;
         $this->clearCart();
-        // 必要ならここでリダイレクト
         // return redirect()->route('order.menu');
     }
 }
