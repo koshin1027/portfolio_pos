@@ -33,10 +33,6 @@
 - キッチン画面（注文状態表示）
 - 会計処理（売上集計）
 
-## 📷 デモ・スクリーンショット
-
-
-
 🔗 URL
 
 - 本番環境: https://portfolio-pos-master-l9ctee.laravel.cloud/start
