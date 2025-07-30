@@ -51,27 +51,7 @@ class CashierSystem extends Component
 
     public function render()
     {
-        return view('livewire.cashier-system', [
-            'categories' => $this->categories,
-            'menus' => $this->menus,
-            'cart' => $this->cart,
-            'subtotal' => $this->subtotal,
-            'tax' => $this->tax,
-            'total' => $this->total,
-            'selectedTable' => $this->selectedTable,
-            'selectedPaymentMethod' => $this->selectedPaymentMethod,
-            'clock' => $this->clock,
-            'showTableModal' => $this->showTableModal,
-            'showCheckoutModal' => $this->showCheckoutModal,
-            'showPaymentCompleteModal' => $this->showPaymentCompleteModal,
-            'selectedCategory' => $this->selectedCategory,
-            // 会計完了モーダル用
-            'completeOrderNumber' => $this->completeOrderNumber,
-            'completeTotalAmount' => $this->completeTotalAmount,
-            'completeChangeAmount' => $this->completeChangeAmount,
-            'completeOrderItems' => $this->completeOrderItems,
-            'orderNumberCandidates' => $this->orderNumberCandidates,
-        ]);
+        return view('livewire.cashier-system');
     }
 
     public function backToStart()
