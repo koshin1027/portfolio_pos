@@ -83,11 +83,16 @@ class Management extends Component
         $this->search = '';
     }
 
-    // メニュー追加モーダル表示
+    // モーダル制御(注文追加)
     public function openAddModal()
     {
         $this->resetForm();
         $this->isAddModalOpen = true;
+    }
+
+    public function closeAddModal()
+    {
+        $this->isAddModalOpen = false;
     }
 
     // メニュー追加処理
@@ -120,11 +125,7 @@ class Management extends Component
         $this->isAddModalOpen = false;
     }
 
-    public function closeAddModal()
-    {
-        $this->isAddModalOpen = false;
-    }
-
+    //モーダル制御(編集)
     public function openEditModal($id)
     {
         $menu = Menu::find($id);
@@ -146,6 +147,7 @@ class Management extends Component
         $this->isEditModalOpen = false;
     }
 
+    //モーダル制御(削除)
     public function openDeleteModal($id)
     {
         $this->deleteMenuId = $id;
@@ -157,7 +159,7 @@ class Management extends Component
         $this->isDeleteModalOpen = false;
     }
 
-    // 編集処理
+    // アップデート処理
     public function update()
     {
         $this->validate([
