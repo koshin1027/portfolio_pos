@@ -65,7 +65,11 @@ class Management extends Component
 
         $menus = $query->paginate(5);
 
-        return view('livewire.management');
+        return view('livewire.management',[
+            'categories' => $this->categories,
+            'menus' => $menus,
+            'activeCategoryId' => $this->activeCategoryId,
+        ]);
     }
 
     public function searchMenus()
