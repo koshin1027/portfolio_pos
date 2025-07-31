@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 use App\Http\Controllers\StartUpController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ModeController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\OrderController;
@@ -13,9 +12,6 @@ use App\Http\Controllers\CashierController;
 
 //スタート画面
 Route::get('/', [StartUpController::class, 'index'])->name('startup');
-
-//ログイン
-// Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 //選択
 Route::get('/mode', [ModeController::class, 'index'])->name('mode');
