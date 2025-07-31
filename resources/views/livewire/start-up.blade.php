@@ -25,7 +25,6 @@
         <h1 class="title">POSシステム</h1>
         <p class="subtitle">ポートフォリオ</p>
         
-        <!-- ボタンを押すとログイン画面に移動 -->
         <button wire:click="gotoLoginPage" class="start-button" id="startButton">スタート</button>
         
         <div class="loading-container" id="loadingContainer">

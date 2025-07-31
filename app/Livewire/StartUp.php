@@ -8,7 +8,7 @@ class StartUp extends Component
 {
     public function gotoLoginPage () 
     {
-        return redirect()->route('login');
+        return redirect()->route('mode');
     }
 
     public function render()
