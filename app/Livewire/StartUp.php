@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class StartUp extends Component
 {
-    public function gotoLoginPage () 
+    public function gotoLoginPage() 
     {
         return redirect()->route('mode');
     }
