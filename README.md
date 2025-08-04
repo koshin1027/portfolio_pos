@@ -22,7 +22,6 @@
 🔗 URL
 
 - 本番環境: https://portfolio-pos-master-l9ctee.laravel.cloud
-- 管理画面ログイン情報: 未入力でログインいただけます
 
 🛠 使用技術
 
