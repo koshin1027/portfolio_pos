@@ -33,7 +33,6 @@ class Management extends Component
     public $deleteMenuId;
 
     // フォーム用プロパティ
-    //カプセル化候補(プロパティを不変にして、セッターとゲッターをつける)
     public $name = '';
     public $price = 0;
     public $category_id = '';
@@ -148,17 +147,12 @@ class Management extends Component
     {
         $menu = Menu::find($id);
 
-        if ($menu) {
-            $this->editMenuId = $id;
-            $this->name = $menu->name;
-            $this->price = $menu->price;
-            $this->category_id = $menu->category_id;
-            $this->status = $menu->status;
-            $this->amount = $menu->amount;
-            $this->explanation = $menu->explanation;
-            // $this->images = $menu->images;
+        $fields = ['name', 'price', 'category_id', 'status', 'amount', 'explanation'];
+        foreach ($fields as $field) {
+            $this->$field = $menu->$field;
         }
 
+        $this->editMenuId = $id;
         $this->isEditModalOpen = true;
     }
 
