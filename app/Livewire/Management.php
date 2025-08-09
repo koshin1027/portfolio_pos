@@ -72,6 +72,20 @@ class Management extends Component
         ]);
     }
 
+    // フォームリセット
+    public function resetForm()
+    {
+        $this->editMenuId = null;
+        $this->name = '';
+        $this->price = 0;
+        $this->category_id = '';
+        $this->status = '';
+        $this->amount = 0;
+        $this->explanation = '';
+        $this->images = '';
+    }
+
+    //カテゴリータブで使用
     public function setActiveCategory($categoryId)
     {
         $this->activeCategoryId = $categoryId;
@@ -193,19 +207,6 @@ class Management extends Component
         }
         $this->deleteMenuId = null;
         $this->isDeleteModalOpen = false;
-    }
-
-    // フォームリセット
-    public function resetForm()
-    {
-        $this->editMenuId = null;
-        $this->name = '';
-        $this->price = 0;
-        $this->category_id = '';
-        $this->status = '';
-        $this->amount = 0;
-        $this->explanation = '';
-        $this->images = '';
     }
 
     public function updatedSearch()
