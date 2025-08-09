@@ -52,23 +52,15 @@ class Management extends Component
         $query = Menu::with('category');
 
         //プロパティを参照して条件処理
-        if (!empty($this->activeCategoryId)) {
-            $query->where('category_id', $this->activeCategoryId);
-        }
+        $query = Menu::with('category')
+            ->when($this->activeCategoryId, fn($q) => $q->where('category_id', $this->activeCategoryId))
+            ->when($this->search, fn($q) => $q->where('name', 'like', '%' . $this->search . '%'))
+            ->when($this->filterStatus && $this->filterStatus !== 'すべての状態', fn($q) => $q->where('status', $this->filterStatus));
 
-        if (!empty($this->search)) {
-            $query->where('name', 'like', '%' . $this->search . '%');
-        }
-
-        if (!empty($this->filterStatus) && $this->filterStatus !== 'すべての状態') {
-            $query->where('status', $this->filterStatus);
-        }
-
-        if ($this->sortPrice === '低い順') {
-            $query->orderBy('price', 'asc');
-        } elseif ($this->sortPrice === '高い順') {
-            $query->orderBy('price', 'desc');
-        }
+        $query->when(in_array($this->sortPrice, ['低い順', '高い順']), function($q) {
+            $direction = $this->sortPrice === '低い順' ? 'asc' : 'desc';
+            $q->orderBy('price', $direction);
+        });
 
         $menus = $query->paginate(5);
 
