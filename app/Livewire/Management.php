@@ -11,9 +11,15 @@ class Management extends Component
 
 {
     use WithPagination;
+
+    //カテゴリータブ制御プロパティ
     public $categories;
     public $activeCategoryId;
+
+    //検索制御プロパティ
     public $search = '';
+
+    //メニュー制御プロパティ
     public $filterStatus = '';
     public $sortPrice = '';
 
@@ -83,7 +89,7 @@ class Management extends Component
         $this->status = '';
         $this->amount = 0;
         $this->explanation = '';
-        $this->images = '';
+        // $this->images = '';
     }
 
     //カテゴリータブで使用
@@ -126,7 +132,7 @@ class Management extends Component
             'status' => $this->status,
             'amount' => $this->amount,
             'explanation' => $this->explanation,
-            'images' => $this->images,
+            // 'images' => $this->images,
         ]);
 
         //フォームリセット
@@ -149,7 +155,7 @@ class Management extends Component
             $this->status = $menu->status;
             $this->amount = $menu->amount;
             $this->explanation = $menu->explanation;
-            $this->images = $menu->images;
+            // $this->images = $menu->images;
         }
 
         $this->isEditModalOpen = true;
