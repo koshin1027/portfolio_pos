@@ -33,7 +33,7 @@ class Management extends Component
     public $deleteMenuId;
 
     // フォーム用プロパティ
-    //カプセル化候補
+    //カプセル化候補(プロパティを不変にして、セッターとゲッターをつける)
     public $name = '';
     public $price = 0;
     public $category_id = '';
@@ -45,13 +45,14 @@ class Management extends Component
     public function mount()
     {
         $this->categories = Category::all();
-        $this->activeCategoryId = $this->categories->first() ? $this->categories->first()->id : null;
+        $this->activeCategoryId = $this->categories->first()->id;
     }
 
     public function render()
     {
         $query = Menu::with('category');
 
+        //プロパティを参照して条件処理
         if (!empty($this->activeCategoryId)) {
             $query->where('category_id', $this->activeCategoryId);
         }
