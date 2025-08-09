@@ -11,10 +11,6 @@
                 </a>
                 <h1 class="text-2xl font-bold">管理画面</h1>
             </div>
-            <div class="flex items-center">
-                <p class="text-gray-400 mr-4">20xx年xx月xx日</p>
-                <p class="text-xl" id="clock">00:00:00</p>
-            </div>
         </div>
     </header>
 
