@@ -49,23 +49,27 @@ class Management extends Component
 
     public function render()
     {
-        // メニューをカテゴリー情報と一緒に取得するクエリを準備
-        $query = Menu::with('category')
-        
-            // activeCategoryIdが設定されていたら、そのカテゴリーのメニューだけ絞り込み
-            ->when($this->activeCategoryId, fn($q) => $q->where('category_id', $this->activeCategoryId))
-            
-            // searchキーワードがあれば、その名前を含むメニューだけ絞り込み
-            ->when($this->search, fn($q) => $q->where('name', 'like', '%' . $this->search . '%'))
-            
-            // filterStatusが空でなく、「すべての状態」でなければ、そのステータスで絞り込み
-            ->when($this->filterStatus && $this->filterStatus !== 'すべての状態', fn($q) => $q->where('status', $this->filterStatus))
-            
-            // sortPriceが「低い順」か「高い順」なら、それに合わせて価格の並び替えを実行
-            ->when(in_array($this->sortPrice, ['低い順', '高い順']), function($q) {
-                $direction = $this->sortPrice === '低い順' ? 'asc' : 'desc'; // 並び順を決定
-                $q->orderBy('price', $direction); // 価格でソート
-            });
+        //プロパティを参照して表示するメニューを表示
+
+        $query = Menu::with('category');
+
+        if (!empty($this->activeCategoryId)) {
+            $query->where('category_id', $this->activeCategoryId);
+        }
+
+        if (!empty($this->search)) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        if (!empty($this->filterStatus) && $this->filterStatus !== 'すべての状態') {
+            $query->where('status', $this->filterStatus);
+        }
+
+        if ($this->sortPrice === '低い順') {
+            $query->orderBy('price', 'asc');
+        } elseif ($this->sortPrice === '高い順') {
+            $query->orderBy('price', 'desc');
+        }
 
         $menus = $query->paginate(5);
 
