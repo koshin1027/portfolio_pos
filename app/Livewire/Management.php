@@ -163,6 +163,7 @@ class Management extends Component
     // アップデート処理
     public function update()
     {
+        //バリデーション
         $this->validate([
             'name' => 'nullable|string|max:255',
             'price' => 'nullable|numeric|min:0',
@@ -173,21 +174,24 @@ class Management extends Component
             // 'images' => 'nullable|string',
         ]);
 
+        //選択されたIDをデータベースから抽出
         $menu = Menu::find($this->editMenuId);
 
-        if ($menu) {
-            $menu->update([
-                'name' => $this->name,
-                'price' => $this->price,
-                'category_id' => $this->category_id,
-                'status' => $this->status,
-                'amount' => $this->amount,
-                'explanation' => $this->explanation,
-                'images' => $this->images,
-            ]);
-        }
+        //バリデーション
+        $menu->update([
+            'name' => $this->name,
+            'price' => $this->price,
+            'category_id' => $this->category_id,
+            'status' => $this->status,
+            'amount' => $this->amount,
+            'explanation' => $this->explanation,
+            // 'images' => $this->images,
+        ]);
 
+        //フォームリセット
         $this->resetForm();
+
+        //モーダルを閉じる
         $this->isEditModalOpen = false;
     }
 
@@ -207,21 +211,9 @@ class Management extends Component
     public function delete()
     {
         $menu = Menu::find($this->deleteMenuId);
-        if ($menu) {
-            $menu->delete();
-        }
+        $menu->delete();
         $this->deleteMenuId = null;
         $this->isDeleteModalOpen = false;
-    }
-
-    public function updatedSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedActiveCategoryId()
-    {
-        $this->resetPage();
     }
 
     // ページネーション: 指定ページへ移動
