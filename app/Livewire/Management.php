@@ -27,6 +27,7 @@ class Management extends Component
     public $deleteMenuId;
 
     // フォーム用プロパティ
+    //カプセル化候補
     public $name = '';
     public $price = 0;
     public $category_id = '';
@@ -128,8 +129,10 @@ class Management extends Component
             'images' => $this->images,
         ]);
 
-        //フォームリセット＆モーダル閉じる
+        //フォームリセット
         $this->resetForm();
+
+        //モーダル閉じる
         $this->isAddModalOpen = false;
     }
 
@@ -137,6 +140,7 @@ class Management extends Component
     public function openEditModal($id)
     {
         $menu = Menu::find($id);
+
         if ($menu) {
             $this->editMenuId = $id;
             $this->name = $menu->name;
@@ -147,24 +151,13 @@ class Management extends Component
             $this->explanation = $menu->explanation;
             $this->images = $menu->images;
         }
+
         $this->isEditModalOpen = true;
     }
 
     public function closeEditModal()
     {
         $this->isEditModalOpen = false;
-    }
-
-    //モーダル制御(削除)
-    public function openDeleteModal($id)
-    {
-        $this->deleteMenuId = $id;
-        $this->isDeleteModalOpen = true;
-    }
-
-    public function closeDeleteModal()
-    {
-        $this->isDeleteModalOpen = false;
     }
 
     // アップデート処理
@@ -196,6 +189,18 @@ class Management extends Component
 
         $this->resetForm();
         $this->isEditModalOpen = false;
+    }
+
+    //モーダル制御(削除)
+    public function openDeleteModal($id)
+    {
+        $this->deleteMenuId = $id;
+        $this->isDeleteModalOpen = true;
+    }
+
+    public function closeDeleteModal()
+    {
+        $this->isDeleteModalOpen = false;
     }
 
     // 削除処理
