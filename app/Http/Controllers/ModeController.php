@@ -11,8 +11,6 @@ class ModeController extends Controller
     //メニュー画面の表示
     public function index()
     {
-        // $categories = Category::all();
-        // $menus = Menu::all();
         return view('mode');
     }
 

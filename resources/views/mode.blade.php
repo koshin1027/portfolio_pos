@@ -58,49 +58,49 @@
 
             <!-- 管理 -->
             <a href="{{ route('management') }}">
-                    <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
-                        <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
-                            <path d="M12 4V20M4 12H20" />
-                            <circle cx="12" cy="12" r="9" />
-                        </svg>
-                        <h2 class="text-2xl font-bold mb-2">管理</h2>
-                        <p class="text-gray-400 text-center">システム設定・売上管理</p>
-                    </div>
+                <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
+                    <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
+                        <path d="M12 4V20M4 12H20" />
+                        <circle cx="12" cy="12" r="9" />
+                    </svg>
+                    <h2 class="text-2xl font-bold mb-2">管理</h2>
+                    <p class="text-gray-400 text-center">システム設定・売上管理</p>
+                </div>
             </a>
 
             <!-- 注文 -->
             <a href="{{ route('order') }}">
-            <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
-                <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
-                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M12 11v6M9 14h6" />
-                </svg>
-                <h2 class="text-2xl font-bold mb-2">注文</h2>
-                <p class="text-gray-400 text-center">注文入力・管理</p>
-            </div>
+                <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
+                    <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M12 11v6M9 14h6" />
+                    </svg>
+                    <h2 class="text-2xl font-bold mb-2">注文</h2>
+                    <p class="text-gray-400 text-center">注文入力・管理</p>
+                </div>
             </a>
 
             <!-- キッチン -->
             <a href="{{ route('kitchen') }}">
-            <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
-                <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
-                    <path d="M15 3v4M6 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
-                    <path d="M5 7h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z" />
-                </svg>
-                <h2 class="text-2xl font-bold mb-2">キッチン</h2>
-                <p class="text-gray-400 text-center">調理状況・オーダー確認</p>
-            </div>
+                <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
+                    <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
+                        <path d="M15 3v4M6 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+                        <path d="M5 7h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z" />
+                    </svg>
+                    <h2 class="text-2xl font-bold mb-2">キッチン</h2>
+                    <p class="text-gray-400 text-center">調理状況・オーダー確認</p>
+                </div>
             </a>
 
             <!-- レジ -->
             <a href="{{ route('cashier') }}">
-            <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
-                <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="M6 8h.01M6 12h.01M6 16h.01M10 8h8M10 12h8M10 16h8" />
-                </svg>
-                <h2 class="text-2xl font-bold mb-2">レジ</h2>
-                <p class="text-gray-400 text-center">会計・支払い処理</p>
-            </div>
+                <div class="menu-item bg-gray-900 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer border border-gray-700 h-64">
+                    <svg class="w-24 h-24 mb-4 icon" viewBox="0 0 24 24">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="M6 8h.01M6 12h.01M6 16h.01M10 8h8M10 12h8M10 16h8" />
+                    </svg>
+                    <h2 class="text-2xl font-bold mb-2">レジ</h2>
+                    <p class="text-gray-400 text-center">会計・支払い処理</p>
+                </div>
             </a>
         </div>
     </div>
