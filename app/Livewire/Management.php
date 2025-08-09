@@ -125,15 +125,14 @@ class Management extends Component
         ]);
 
         // メニュー新規作成
-        Menu::create([
-            'name' => $this->name,
-            'price' => $this->price,
-            'category_id' => $this->category_id,
-            'status' => $this->status,
-            'amount' => $this->amount,
-            'explanation' => $this->explanation,
-            // 'images' => $this->images,
-        ]);
+        $fields = ['name', 'price', 'category_id', 'status', 'amount', 'explanation'];
+        $data = [];
+
+        foreach ($fields as $field) {
+            $data[$field] = $this->$field;
+        }
+
+        Menu::create($data);
 
         //フォームリセット
         $this->resetForm();
@@ -148,6 +147,7 @@ class Management extends Component
         $menu = Menu::find($id);
 
         $fields = ['name', 'price', 'category_id', 'status', 'amount', 'explanation'];
+
         foreach ($fields as $field) {
             $this->$field = $menu->$field;
         }
@@ -178,16 +178,15 @@ class Management extends Component
         //選択されたIDをデータベースから抽出
         $menu = Menu::find($this->editMenuId);
 
-        //バリデーション
-        $menu->update([
-            'name' => $this->name,
-            'price' => $this->price,
-            'category_id' => $this->category_id,
-            'status' => $this->status,
-            'amount' => $this->amount,
-            'explanation' => $this->explanation,
-            // 'images' => $this->images,
-        ]);
+        //アップデート処理
+        $fields = ['name', 'price', 'category_id', 'status', 'amount', 'explanation'];
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $this->$field;
+        }
+
+        $menu->update($data);
 
         //フォームリセット
         $this->resetForm();
