@@ -72,11 +72,6 @@ class Management extends Component
         ]);
     }
 
-    public function searchMenus()
-    {
-        $this->resetPage();
-    }
-
     public function setActiveCategory($categoryId)
     {
         $this->activeCategoryId = $categoryId;
